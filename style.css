@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+}
+body {
+    overflow: hidden;
+}
+.c_api {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.test {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -9;
+}
+
+.w_i:before {
+    content: url('https://e7.pngegg.com/pngimages/143/633/png-clipart-computer-icons-computer-software-magnifying-glass-website-icon-data-magnifier.png');
+    background-color: aqua;
+    width: 20px;
+    height: 20px;
+}
