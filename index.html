@@ -8,11 +8,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="c_api">  
-      <video  class="test" autoplay muted loop></video>
-      <h1>Weather Api Report</h1>     
-      <input class="w_i" type="text" name="" placeholder="Search country or province" id="">
-    </div>  
+    <div id="conteinerVideo" class="c_w-api">  
+        <video id="video"  class="w-v" autoplay muted loop></video>
+        <p>Ubicacion</p>
+        <h1 class="title">Weather Api Report</h1>     
+        <div class="c_i-t">
+            <input class="i-t" type="text" name="" placeholder="Search country or province" id="searchInputText">
+            <input type="button" class="w_i-t_l" alt="Search logo" id="searchInputButton">
+        </div> 
+        <div class="dates">
+            <p>15:33 PM</p>
+            <p>Wednesday, 9 March</p>
+        </div>
+        <div class="card_d-n">
+            <p>Temperature</p>
+            <p>Feelslike</p>
+            <p>Humidity</p>    
+            <p>Winspeed</p>    
+            <p>Probality of rain</p>    
+        </div>
+        <div class="chain_d">    
+            <div class="card_d">
+                <div class="card_t">
+                    <p>Today</p>
+                </div>
+                <div class="day_data">
+                    <img class="clima" src="https://assets.stickpng.com/thumbs/580b585b2edbce24c47b2710.png" alt="clima logo">
+                    <div>
+                        <p>min</p>
+                        <p>max</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card_d">
+              <div class="card_t">
+                  <p>Today</p>
+              </div>
+              <div class="day_data">
+                  <img class="clima" src="https://assets.stickpng.com/thumbs/580b585b2edbce24c47b2710.png" alt="clima logo">
+                  <div>
+                      <p>min</p>
+                      <p>max</p>
+                  </div>
+              </div>
+          </div>
+          <div class="card_d">
+            <div class="card_t">
+                <p>Today</p>
+            </div>
+            <div class="day_data">
+                <img class="clima" src="https://assets.stickpng.com/thumbs/580b585b2edbce24c47b2710.png" alt="clima logo">
+                <div>
+                    <p>min</p>
+                    <p>max</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 <script src="PexelsApi.js"></script>
+<script src="WeatherApi.js"></script>
 </html>
