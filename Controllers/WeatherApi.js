@@ -39,10 +39,9 @@ const Weather = async (query, lat="", lon="") => {
     if(resZone.address.state !== undefined) stateZone = resZone.address.state;
     if(resZone.address.country !== undefined) countryZone = resZone.address.country;
 
-    if(!query) {
-        PEXELS(stateZone + " " + countryZone);
-        UBI.textContent = stateZone + ", " + countryZone;
-    } else UBI.textContent = stateZone + " " + countryZone;
+    if(!query) PEXELS(stateZone + " " + countryZone);
+    if(stateZone === "") UBI.textContent = countryZone;
+    else UBI.textContent = stateZone + ", " + countryZone;
 
     DATACURRENT.textContent = 'Temperature: ' + resWeather.current.temp + "°C";
     DATACURRENTFl.textContent = 'FeelsLike: ' + resWeather.current.feels_like + "°C";
