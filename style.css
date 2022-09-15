@@ -136,6 +136,23 @@ body {
     animation: error .5s ;
 }
 
+.incompatibility {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(76, 76, 76, 0.812);
+}
+
+.incompatibility-message {
+    background-color: #fffffff5;
+    padding: 150px 100px;
+    border-radius: 5px;
+}
+
 @keyframes error {
     from {clip-path: inset(0 100% 0 0);}
     to {clip-path: inset(0 0 0 0);}
