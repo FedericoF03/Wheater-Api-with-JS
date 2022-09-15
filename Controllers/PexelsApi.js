@@ -1,5 +1,5 @@
 const d = document;
-const getId = id => d.getElementById(id)
+const getId = id => d.getElementById(id);
 let background2 = getId("video");
 
 const PEXELS = async (searching)=> {  
@@ -8,7 +8,8 @@ const PEXELS = async (searching)=> {
             method: "GET",
             headers: { authorization: "563492ad6f917000010000013ea3a5d197f94a3bab2ef413713dda13" }});
         let res = await pet.json();
+        console.log(res)
         background2.setAttribute("type", res.videos[0].video_files[0].file_type );
-        background2.src = res.videos[0].video_files[0].link
+        background2.src = res.videos[0].video_files[0].link;
 
 }
