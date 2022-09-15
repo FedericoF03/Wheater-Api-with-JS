@@ -95,7 +95,7 @@ body {
     background-color: #ffffff;
     border: none;
     border-radius: 0 5px 5px 0;
-    
+    cursor: pointer;
 }
 
 .card_d {
@@ -112,7 +112,7 @@ body {
 }
 
 .card_d-n {
-    background-color: #3a3a3ae0;
+    background-color: #060606f5;
     width: 50%;
     min-width: max-content;
     max-width: max-content;
@@ -121,7 +121,24 @@ body {
     margin: auto;
     padding: 20px 20px;
     border-radius: 40px;
+    display: flex;
     color: #ffffffe0;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.error {
+    position: absolute;
+    left: 0;
+    background-color: #f01212b7;
+    padding: 5px;
+    border-radius: 0 5px 5px 0;
+    animation: error .5s ;
+}
+
+@keyframes error {
+    from {clip-path: inset(0 100% 0 0);}
+    to {clip-path: inset(0 0 0 0);}
 }
 
 .clima {

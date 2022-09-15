@@ -8,6 +8,10 @@ let search = getId("searchInputText");
 const space = getId("space");
 const TEMPLATEDAILY = getId("template").content;
 let frag = document.createDocumentFragment();
+const message = getId("message");
+let error = d.createElement("p");
+error.classList.add("error");
+error.textContent = "No matches found! Try again with other Words.";
 
 const Weather = async (query, lat="", lon="") => {
 
@@ -22,7 +26,8 @@ const Weather = async (query, lat="", lon="") => {
         let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search.value}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`);
         let resCoord = await petCoord.json();
         if (resCoord.cod === '404') {
-            return console.log("no se encontro");
+            message.appendChild(error);
+            return setTimeout(()=>{message.removeChild(error);}, 8000)
         }
         PEXELS(search.value);
         lat = resCoord.coord.lat;   
@@ -53,7 +58,7 @@ const Weather = async (query, lat="", lon="") => {
             space.removeChild(space.children[1]);
         }
     }
-    console.log(space.children)
+    
     let today = true;
     resWeather.daily.forEach((element, index) => {
         if(index < 7) {
