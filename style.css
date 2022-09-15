@@ -132,7 +132,7 @@ body {
     text-align: center;
     font-size: 1.5em;
     padding: 5px;
-    color: #efa630;
+    color: #ffffffe0;
 }
 .day_data {
     display: flex;
@@ -163,10 +163,6 @@ body {
     width: max-content;
     margin: 15px 0;
     border-radius: 0 15px 15px 0;
-}
-
-.other-day {
-    color: #ffffffe0;
 }
 
 .min {

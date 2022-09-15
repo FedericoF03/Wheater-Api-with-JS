@@ -17,7 +17,6 @@ const Weather = async (query, lat="", lon="") => {
     const DATENOW = new Date();
     let day = DATENOW.getDay() + 1;
     const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let today = true;
 
     if (query) {
         let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search.value}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`);
@@ -48,21 +47,25 @@ console.log(resZone)
     DATACURRENTH.textContent = 'Humidity: ' + resWeather.current.humidity + "%";
     DATACURRENTW.textContent = 'Wind speed: ' + resWeather.current.wind_speed + " Km/h";
 
-    if (space.children.length === 7) {
+    if (space.children.length === 8) {
         while (1 !== space.children.length ) {
             space.removeChild(space.children[1]);
         }
     }
-            
+    console.log(space.children)
+    let today = true;
     resWeather.daily.forEach((element, index) => {
         if(index < 7) {
             if(day > 6) day = 0 
             if(today) {
                 TEMPLATEDAILY.getElementById("daytest").textContent = "Today";
-                today = false;
+                TEMPLATEDAILY.getElementById("daytest").style.color = "#efa630";
+                console.log("antes:" + today) 
+                today = false; 
+                console.log("despues:" + today)                    
             } else {
+                TEMPLATEDAILY.getElementById("daytest").style.color = "";
                 TEMPLATEDAILY.getElementById("daytest").textContent = DAYS[day++];
-                TEMPLATEDAILY.getElementById("daytest").classList.add("other-day");
             }
             
             if(DATENOW.getHours() > 18 || DATENOW.getHours() < 7 ) element.weather[0].icon = element.weather[0].icon.replace("d", "n")
@@ -74,7 +77,8 @@ console.log(resZone)
         }
         
     });  
-        space.appendChild(frag);             
+        space.appendChild(frag);     
+        today = true;        
 }
 
 
