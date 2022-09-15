@@ -53,22 +53,25 @@ const Weather = async (query, lat="", lon="") => {
         }
     }
             
-    resWeather.daily.forEach(element => {
-        if(day > 6) day = 0 
-        if(today) {
-            TEMPLATEDAILY.getElementById("daytest").textContent = "Today";
-            today = false;
-        } else {
-            TEMPLATEDAILY.getElementById("daytest").textContent = DAYS[day++];
-            TEMPLATEDAILY.getElementById("daytest").classList.add("other-day");
+    resWeather.daily.forEach((element, index) => {
+        if(index < 7) {
+            if(day > 6) day = 0 
+            if(today) {
+                TEMPLATEDAILY.getElementById("daytest").textContent = "Today";
+                today = false;
+            } else {
+                TEMPLATEDAILY.getElementById("daytest").textContent = DAYS[day++];
+                TEMPLATEDAILY.getElementById("daytest").classList.add("other-day");
+            }
+            
+            if(DATENOW.getHours() > 18 || DATENOW.getHours() < 7 ) element.weather[0].icon = element.weather[0].icon.replace("d", "n")
+            TEMPLATEDAILY.getElementById("clime").src = "http://openweathermap.org/img/wn/" + element.weather[0].icon + "@2x.png";
+            TEMPLATEDAILY.getElementById("min").textContent = "min " + element.temp.min + "°C";
+            TEMPLATEDAILY.getElementById("max").textContent = "max " + element.temp.max + "°C";
+            clone = document.importNode(TEMPLATEDAILY, true);
+            frag.appendChild(clone);
         }
         
-        if(DATENOW.getHours() > 18 || DATENOW.getHours() < 7 ) element.weather[0].icon = element.weather[0].icon.replace("d", "n")
-        TEMPLATEDAILY.getElementById("clime").src = "http://openweathermap.org/img/wn/" + element.weather[0].icon + "@2x.png";
-        TEMPLATEDAILY.getElementById("min").textContent = "min " + element.temp.min + "°C";
-        TEMPLATEDAILY.getElementById("max").textContent = "max " + element.temp.max + "°C";
-        clone = document.importNode(TEMPLATEDAILY, true);
-        frag.appendChild(clone);
     });  
         space.appendChild(frag);             
 }

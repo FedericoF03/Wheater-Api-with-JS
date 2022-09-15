@@ -105,7 +105,7 @@ body {
     min-width: 100px;
     background-color: #000000ed;
     padding: 10px 25px;
-    margin: auto 25px;
+    margin: auto 15px;
     border-radius: 20px 60px 20px 60px;
     flex-direction: column;
     justify-content: center;
