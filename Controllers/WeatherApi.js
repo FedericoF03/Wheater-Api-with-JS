@@ -17,12 +17,12 @@ const Weather = async(query, lat="", lon="")=> {
     let today = true
 
     if (query) {
-        PEXELS(search.value);
         let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search.value}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`);
         let resCoord = await petCoord.json();
         if (resCoord.cod === '404') {
-            console.log("no se encontro")
+            return console.log("no se encontro")
         }
+        PEXELS(search.value);
         lat = resCoord.coord.lat    
         lon = resCoord.coord.lon
     } 
