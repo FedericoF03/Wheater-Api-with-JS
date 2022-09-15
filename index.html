@@ -10,10 +10,14 @@
 <body>
     <div id="conteinerVideo" class="c_w-api">  
         <video id="video"  class="w-v" autoplay muted loop></video>
-        <p id="ubi"></p>
+        <div class="location-b">
+            <p id="ubi" class="location"></p>
+            <p class="b-style"></p>
+        </div>
+        
         <h1 class="title">Weather Api Report</h1>     
         <div class="c_i-t">
-            <input class="i-t" type="text" name="" placeholder="Search country or province" id="searchInputText">
+            <input class="i-t" type="text" name="" placeholder="Search 'State, Country' or 'State'" id="searchInputText">
             <input type="button" class="w_i-t_l" alt="Search logo" id="searchInputButton">
         </div> 
         <div class="dates">
@@ -35,8 +39,8 @@
                 <div class="day_data">
                     <img id="clime" class="clima"  alt="clima logo">
                     <div>
-                        <p id="min"></p>
-                        <p id="max"></p>
+                        <p id="min" class="min"></p>
+                        <p id="max" class="max"></p>
                     </div>
                 </div>
             </div>

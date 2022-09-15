@@ -1,8 +1,7 @@
 const AUTO = ()=> {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
-            Weather(true, pos.coords.latitude, pos.coords.longitude)
-            PEXELS(true, pos.coords.latitude, pos.coords.longitude);
+            Weather(false, pos.coords.latitude, pos.coords.longitude)
         })
         
     }
