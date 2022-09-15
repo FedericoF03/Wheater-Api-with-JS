@@ -48,7 +48,7 @@ console.log(resZone)
     DATACURRENTH.textContent = 'Humidity: ' + resWeather.current.humidity + "%";
     DATACURRENTW.textContent = 'Wind speed: ' + resWeather.current.wind_speed + " Km/h";
 
-    if (space.children.length === 9) {
+    if (space.children.length === 7) {
         while (1 !== space.children.length ) {
             space.removeChild(space.children[1]);
         }
