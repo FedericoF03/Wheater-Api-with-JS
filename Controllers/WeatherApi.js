@@ -32,15 +32,17 @@ const Weather = async (query, lat="", lon="") => {
     let requestWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=3fa0f591a653264d619986f2c14b8507`;
     let petWeather = await fetch(requestWeather);
     let resWeather = await petWeather.json(); 
-    console.log(resWeather)
+    
     let petZone = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
     let resZone = await petZone.json();
-console.log(resZone)
+
     if(resZone.address.state !== undefined) stateZone = resZone.address.state;
     if(resZone.address.country !== undefined) countryZone = resZone.address.country;
 
-    if(!query) PEXELS(stateZone + " " + countryZone);
-    UBI.textContent = stateZone + ", " + countryZone;
+    if(!query) {
+        PEXELS(stateZone + " " + countryZone);
+        UBI.textContent = stateZone + ", " + countryZone;
+    } else UBI.textContent = stateZone + " " + countryZone;
 
     DATACURRENT.textContent = 'Temperature: ' + resWeather.current.temp + "°C";
     DATACURRENTFl.textContent = 'FeelsLike: ' + resWeather.current.feels_like + "°C";
@@ -59,10 +61,8 @@ console.log(resZone)
             if(day > 6) day = 0 
             if(today) {
                 TEMPLATEDAILY.getElementById("daytest").textContent = "Today";
-                TEMPLATEDAILY.getElementById("daytest").style.color = "#efa630";
-                console.log("antes:" + today) 
-                today = false; 
-                console.log("despues:" + today)                    
+                TEMPLATEDAILY.getElementById("daytest").style.color = "#efa630"; 
+                today = false;                            
             } else {
                 TEMPLATEDAILY.getElementById("daytest").style.color = "";
                 TEMPLATEDAILY.getElementById("daytest").textContent = DAYS[day++];
