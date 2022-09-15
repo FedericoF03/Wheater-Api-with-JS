@@ -33,9 +33,10 @@ const Weather = async (query, lat="", lon="") => {
     let requestWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=3fa0f591a653264d619986f2c14b8507`;
     let petWeather = await fetch(requestWeather);
     let resWeather = await petWeather.json(); 
+    console.log(resWeather)
     let petZone = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
     let resZone = await petZone.json();
-
+console.log(resZone)
     if(resZone.address.state !== undefined) stateZone = resZone.address.state;
     if(resZone.address.country !== undefined) countryZone = resZone.address.country;
 
