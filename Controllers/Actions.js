@@ -1,8 +1,8 @@
+let d = document
+const getId = id => d.getElementById(id);
 let button = getId("searchInputButton");
-d.addEventListener("click", e=>{
-    
-    if(e.target == button) {
-        Weather(true);
-    }
+const search = () => d.addEventListener('click', e => {
+    if (e.target == button) Weather(true)
 });
 
+export default search
