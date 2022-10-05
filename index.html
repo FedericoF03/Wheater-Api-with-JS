@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Weather api</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
     <div id="conteinerVideo" class="c_w-api">  
         <video id="video" src=""  class="w-v" autoplay muted loop></video>
         <div class="location-b">
-            <p id="ubi" class="location"></p>
+            <p id="location" class="location"></p>
             <p class="b-style"></p>
         </div>
         <h1 class="title">Weather Api Report</h1>     
-        <div class="c_i-t" id="message">
+        <div class="c_i-t" id="searchBox">
             <input class="i-t" type="text" name="" placeholder="Search 'State, Country' or 'State'" id="searchInputText">
-            <input type="button" class="w_i-t_l" alt="Search logo" id="searchInputButton">
+            <input type="submit" value="" class="w_i-t_l" alt="Search logo" id="searchSubmit">
         </div> 
         <div class="dates">
             <p id="hours" ></p>
@@ -30,7 +30,7 @@
             <p id="humidity">Humidity:</p>    
             <p id="windSpeed">Winspeed:</p>       
         </div>
-        <div id="space" class="chain_d">
+        <div id="backgroundTemplate" class="chain_d">
             <template id="template">
             <div class="card_d">
                 <div class="card_t">
@@ -48,5 +48,5 @@
         </div>
     </div>
 </body>
-<script type="module" src="Controllers/Auto.js"></script>
+<script type="module" src="Controllers/ApiController.js"></script>
 </html>
