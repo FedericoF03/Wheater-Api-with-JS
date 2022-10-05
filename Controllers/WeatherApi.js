@@ -15,14 +15,16 @@ const $DATACURRENT = document.getElementById("temp"),
 
 export const Weather = async ({lat, lon} = "") => {
     try {
-        let data = null;
-        
-        if (!lat || !lon) {
+        let data = null,
+        today = new Date().getDay();
+
+        if (!lat || !lon && $SEARCHINPUT.value !== "") {
             let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${$SEARCHINPUT.value}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`),
                 resCoord = await petCoord.json();
+            if(resCoord.cod !== 200) throw new Error('No se encontro coincidencia')
             data = await WeatherData(resCoord.coord.lat, resCoord.coord.lon);
             PexelsApi($SEARCHINPUT.value);
-        } else data = await WeatherData(lat, lon);
+        } else if (lat && lon) data = await WeatherData(lat, lon)
 
         let stateZone = data.resZone.address.state,
             countryZone = data.resZone.address.country;
@@ -36,9 +38,7 @@ export const Weather = async ({lat, lon} = "") => {
         $DATACURRENTH.textContent = 'Humidity: ' + data.resWeather.current.humidity + "%";
         $DATACURRENTW.textContent = 'Wind speed: ' + data.resWeather.current.wind_speed + " Km/h";
 
-        let today = new Date().getDay();
-        console.log($SPACE.children = "")
-        console.log()
+        $SPACE.innerHTML = ""
         data.resWeather.daily.forEach((element, index) => {
             if(index < 7) {
                 today > 6 ? today = 0 : today;
@@ -52,10 +52,17 @@ export const Weather = async ({lat, lon} = "") => {
             }
             
         });  
-            $SPACE.appendChild($FRAG);     
+            $SPACE.appendChild($FRAG);    
+            const $TODAYSTLYE = document.querySelectorAll(".card_d") 
+            const $MIN = document.querySelectorAll(".min") 
+            const $MAX = document.querySelectorAll(".max") 
+            console.log($MAX)
+            $TODAYSTLYE[0].style.backgroundColor = "#ffa808"
+            $MAX[0].style.color = "#000000"
+            $MIN[0].style.color = "#000000"
+
             today = 0; 
     } catch (err) {
-        console.log(err)
         let $ERROR = document.createElement("p");
         $ERROR.classList.add("error");
         $ERROR.textContent = err;
