@@ -10,13 +10,22 @@ export const ActiveGeo = (cb)=> {
             cb(geo)
         }, (err) => {
             if(err) {
-                let incompatibilidad = document.createElement("div"),
+                if (err = 'User denied Geolocation') {
+                    let geo = {
+                        lat: -34.603722,
+                        lon: -58.381592
+                    }
+                    cb(geo)
+                } else {
+                    let incompatibilidad = document.createElement("div"),
                     incompatibilidadMes = document.createElement("p");
                 incompatibilidad.classList.add("incompatibility"); 
                 incompatibilidadMes.classList.add("incompatibility-message");
                 incompatibilidadMes.textContent = err.message;
                 incompatibilidad.appendChild(incompatibilidadMes);
                 conteinerVideo.appendChild(incompatibilidad);
+                }
+                
             }
         }, { enableHighAccuracy: true } ); 
     }

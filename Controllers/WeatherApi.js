@@ -16,20 +16,29 @@ const $DATACURRENT = document.getElementById("temp"),
 export const Weather = async ({lat, lon} = "") => {
     try {
         let data = null,
-        today = new Date().getDay();
-
-        if (!lat || !lon && $SEARCHINPUT.value !== "") {
-            let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${$SEARCHINPUT.value}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`),
+            today = new Date().getDay(),
+            query = $SEARCHINPUT.value.trim()
+        if ((!lat || !lon) && (query) ) {
+            let petCoord = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${query}&lang=es&appid=3fa0f591a653264d619986f2c14b8507&units=metric`),
                 resCoord = await petCoord.json();
-            if(resCoord.cod !== 200) throw new Error('No se encontro coincidencia')
-            data = await WeatherData(resCoord.coord.lat, resCoord.coord.lon);
-            PexelsApi($SEARCHINPUT.value);
+                console.log(resCoord)
+            if(resCoord.cod !== 200) {
+                $SEARCHINPUT.value = ""
+                throw new Error(`no match found with the input ${query}`)
+            }
+            PexelsApi(query)
+            $SEARCHINPUT.value = ""
+            data = await WeatherData(resCoord.coord.lat, resCoord.coord.lon);    
         } else if (lat && lon) data = await WeatherData(lat, lon)
+        else {
+            $SEARCHINPUT.value = ""
+            throw new Error('insert city name, state, country in the input')
+        }
 
         let stateZone = data.resZone.address.state,
             countryZone = data.resZone.address.country;
-
-        PexelsApi(stateZone + " " + countryZone);
+        
+        if (lat && lon) PexelsApi(stateZone + " " + countryZone);
         if(stateZone === "") $LOC.textContent = countryZone;
         else $LOC.textContent = stateZone + ", " + countryZone;
 
@@ -53,10 +62,10 @@ export const Weather = async ({lat, lon} = "") => {
             
         });  
             $SPACE.appendChild($FRAG);    
-            const $TODAYSTLYE = document.querySelectorAll(".card_d") 
-            const $MIN = document.querySelectorAll(".min") 
-            const $MAX = document.querySelectorAll(".max") 
-            console.log($MAX)
+            const $TODAYSTLYE = document.querySelectorAll(".card_d"), 
+                $MIN = document.querySelectorAll(".min"),
+                $MAX = document.querySelectorAll(".max") 
+            
             $TODAYSTLYE[0].style.backgroundColor = "#ffa808"
             $MAX[0].style.color = "#000000"
             $MIN[0].style.color = "#000000"
